@@ -1,12 +1,21 @@
 const api_url = "http://localhost:8080/api/v1/restaurants/"
 let city = "Helsinki"
 
-const result = fetch("http://localhost:8080/api/v1/restaurants/Helsinki")
-    .then(response => response.json());
-    // .then(restaurants => showRestaurants(restaurants.results));
+function getRes() {
+    const response = fetch(api_url + city);
+    console.log(response);
+    const data = response.json();
+    console.log(data);
+}
 
-console.log(result)
-console.log(result.name)
+getRes();
+
+// const result = fetch("http://localhost:8080/api/v1/restaurants/Helsinki")
+//     .then(response => response.json());
+//     // .then(restaurants => showRestaurants(restaurants.results));
+//     console.log(response);
+
+
 
 showRestaurants = restaurants => {
     const restaurantsDiv = document.querySelector("#character-data");
