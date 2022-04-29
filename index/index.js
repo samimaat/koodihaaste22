@@ -1,13 +1,20 @@
-fetch("http://localhost:8080/swagger-ui/index.html#/restaurant-controller/fetchRestaurants")
-    .then(response => response.json())
-    .then(restaurants => showRestaurants(restaurants.results));
+const api_url = "http://localhost:8080/api/v1/restaurants/"
+let city = "Helsinki"
+
+const result = fetch("http://localhost:8080/api/v1/restaurants/Helsinki")
+    .then(response => response.json());
+    // .then(restaurants => showRestaurants(restaurants.results));
+
+console.log(result)
+console.log(result.name)
 
 showRestaurants = restaurants => {
     const restaurantsDiv = document.querySelector("#character-data");
 
     restaurants.forEach(restaurant => {
         const restaurantElement = document.createElement("p");
-        restaurantElement.innerText = "Restaurant Name: " + restaurant;name;charactersDiv.append(characterElement);
+        restaurantElement.innerText = "Restaurant Name: " + restaurant.name;
+        charactersDiv.append(characterElement);
     });
 }
 
