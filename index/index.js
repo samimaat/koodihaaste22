@@ -15,27 +15,21 @@ async function getRes() {
 
 // getRes();
 
-// The variable way?
+// Stolen and adapted from https://jack72828383883.medium.com/how-to-use-javascript-fetch-to-display-api-results-in-html-7aa59936ed30. Thanks!
 
-showRestaurants = restaurants => {
+const result = fetch(api_url + city)
+    .then(response => response.json())
+    .then(restaurants => showRestaurants(restaurants));
+
+showRestaurants = restaurantsAPI => {
     const restaurantsDiv = document.querySelector("#restaurant-data");
 
-    restaurants.forEach(restaurant => {
+    restaurantsAPI.restaurants.forEach(restaurant => {
         const restaurantElement = document.createElement("p");
-        restaurantElement.innerText = "Restaurant Name: " + restaurant[0].name;
+        restaurantElement.innerText = "Restaurant Name: " + restaurant.name;
         restaurantsDiv.append(restaurantElement);
     });
 }
-
-
-// Other crap
-
-// const result = fetch(api_url + city)
-//     .then(response => response.json())
-//     .then(restaurants => showRestaurants(restaurants.results));
-//     console.log(response.restaurants[0].name);
-
-
 
 // async function getISS() {
 //     response = await fetch("https://api.wheretheiss.at/v1/satellites/25544");
