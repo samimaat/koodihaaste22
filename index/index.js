@@ -17,7 +17,7 @@ showRestaurants = restaurantsAPI => {
 
     restaurantsAPI.restaurants.forEach(restaurant => {
         const restaurantElement = document.createElement("p");
-        restaurantElement.innerText = "Restaurant Name: " + restaurant.name;
+        restaurantElement.innerText = "Ravintola: " + restaurant.name;
         restaurantsDiv.append(restaurantElement);
     });
 }
