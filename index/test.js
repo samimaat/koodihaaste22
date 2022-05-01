@@ -1,31 +1,46 @@
 // Rick and Morty API
 // https://jack72828383883.medium.com/how-to-use-javascript-fetch-to-display-api-results-in-html-7aa59936ed30
 
+let i = 0;
+
 fetch("https://rickandmortyapi.com/api/character/")
    .then(response => response.json())
    .then(characters => showCharacters(characters.results));
 
 showCharacters = characters => {
-    const charactersDiv = document.querySelector("#character-data");
+    const charactersForm = document.querySelector("#character-data");
     console.log(characters);
     
-    characters.forEach(character => {
-      const characterElement = document.createElement("input");
-      characterElement.type ="radio";
 
-      const label = characterElement.createElement("label");
+    characters.forEach(character => {
+      var characterId = "character" + i;
+
+      var characterElement = document.createElement("input");
+      characterElement.type = "radio";
+      characterElement.name = "fav_character";
+      characterElement.id = characterId;
+      characterElement.value ="character";
+
+      var label = document.createElement("label");
+      label.htmlFor = characterId;
       
-      const description = document.createTextNode("Character Name: " + character.name);
+      var description = document.createTextNode("Character Name: " + character.name);
       label.appendChild(description);
 
       var newline = document.createElement("br");
       
-      charactersDiv.appendChild(characterElement);
-      charactersDiv.appendChild(label);
-      charactersDiv.appendChild(newline);
+      charactersForm.append(characterElement);
+      charactersForm.append(label);
+      charactersForm.append(newline);
+
+      i++;
+      console.log(i);
     });
   }
 
+
+// Generating new radio buttons: https://www.techiedelight.com/create-radio-button-dynamically-javascript/#:~:text=To%20create%20a%20radio%20button,appendChild()%20method.
+// Problem: It lets you select multiple ones and they aren't unique.
 document.getElementById('submit2').onclick = function() {
     var radiobox = document.createElement('input');
     radiobox.type = 'radio';
