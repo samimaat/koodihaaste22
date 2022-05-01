@@ -8,7 +8,7 @@ fetch("https://rickandmortyapi.com/api/character/")
    .then(characters => showCharacters(characters.results));
 
 showCharacters = characters => {
-    const charactersForm = document.querySelector("#character-data");
+    const charactersForm = document.getElementById("character-data");
     console.log(characters);
     
 
