@@ -10,8 +10,38 @@ showCharacters = characters => {
     console.log(characters);
     
     characters.forEach(character => {
-      const characterElement = document.createElement("p");
-      characterElement.innerText = "Character Name: " + character.name;
-      charactersDiv.append(characterElement);
+      const characterElement = document.createElement("input");
+      characterElement.type ="radio";
+
+      const label = characterElement.createElement("label");
+      
+      const description = document.createTextNode("Character Name: " + character.name);
+      label.appendChild(description);
+
+      var newline = document.createElement("br");
+      
+      charactersDiv.appendChild(characterElement);
+      charactersDiv.appendChild(label);
+      charactersDiv.appendChild(newline);
     });
   }
+
+document.getElementById('submit2').onclick = function() {
+    var radiobox = document.createElement('input');
+    radiobox.type = 'radio';
+    radiobox.id = 'contact';
+    radiobox.value = 'email';
+ 
+    var label = document.createElement('label')
+    label.htmlFor = 'contact';
+ 
+    var description = document.createTextNode('Email');
+    label.appendChild(description);
+ 
+    var newline = document.createElement('br');
+ 
+    var container = document.getElementById('container');
+    container.appendChild(radiobox);
+    container.appendChild(label);
+    container.appendChild(newline);
+}
