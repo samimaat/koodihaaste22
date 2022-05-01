@@ -7,13 +7,13 @@ let city = "Helsinki"
 // Stolen and adapted from https://jack72828383883.medium.com/how-to-use-javascript-fetch-to-display-api-results-in-html-7aa59936ed30. Thanks!
 
 // Fetches the restaurant information from the API and continues into a function, which constructs the HTML and displays on the page.
-const result = fetch(api_url + city)
+fetch(api_url + city)
     .then(response => response.json())
     .then(restaurants => showRestaurants(restaurants));
 
 // Loops and returns all the restaurant names in a specific city.
 showRestaurants = restaurantsAPI => {
-    const restaurantsDiv = document.querySelector("#restaurant-data");
+    const restaurantsDiv = document.getElementById("restaurant-data");
 
     restaurantsAPI.restaurants.forEach(restaurant => {
         const restaurantElement = document.createElement("p");
