@@ -13,12 +13,31 @@ fetch(api_url + city)
 
 // Loops and returns all the restaurant names in a specific city.
 showRestaurants = restaurantsAPI => {
-    const restaurantsDiv = document.getElementById("restaurant-data");
+    let i = 0;
+
+    const restaurantsForm = document.getElementById("restaurant-data");
 
     restaurantsAPI.restaurants.forEach(restaurant => {
-        const restaurantElement = document.createElement("p");
-        restaurantElement.innerText = "Ravintola: " + restaurant.name;
-        restaurantsDiv.append(restaurantElement);
+        const restaurantId = "restaurant" + i;
+
+        const restaurantElement = document.createElement("input");
+        restaurantElement.type = "radio";
+        restaurantElement.name = "restaurant_voting";
+        restaurantElement.id = restaurantId;
+        restaurantElement.value = "restaurant_option";
+
+        const label = document.createElement("label");
+        label.htmlFor = restaurantId;
+
+        const description = document.createTextNode("Ravintola: " + restaurant.name);
+        label.append(description);
+
+        const newline = document.createElement("br");
+
+        restaurantsForm.append(restaurantElement, label, newline);
+
+        i++;
+        
     });
 }
 
