@@ -1,20 +1,32 @@
 const api_url = "http://localhost:8080/api/v1/restaurants/"
 
 // The city can be changed
-let city = "Helsinki"
+let city = ""
+
 // https://stackoverflow.com/questions/35038857/setting-query-string-using-fetch-get-request
 
 // Stolen and adapted from https://jack72828383883.medium.com/how-to-use-javascript-fetch-to-display-api-results-in-html-7aa59936ed30. Thanks!
 
 // Fetches the restaurant information from the API and continues into a function, which constructs the HTML and displays on the page.
-fetch(api_url + city)
-    .then(response => response.json())
-    .then(restaurants => showRestaurants(restaurants));
+
+function getSearchData() {
+    let city = document.getElementById("search").value;
+    citySelect(city);
+}
+
+function citySelect(city) {
+    fetch(api_url + city)
+        .then(response => response.json())
+        .then(restaurants => showRestaurants(restaurants));
+}
+
+
+// Hangs here now!
 
 // Loops and returns all the restaurant names in a specific city.
 showRestaurants = restaurantsAPI => {
     let i = 0;
-
+    
     const restaurantsForm = document.getElementById("restaurant-data");
 
     restaurantsAPI.restaurants.forEach(restaurant => {
@@ -40,8 +52,6 @@ showRestaurants = restaurantsAPI => {
         
     });
 }
-
-
 // The function way: 
 
 // async function getRes() {
