@@ -1,7 +1,7 @@
 const api_url = "http://localhost:8080/api/v1/restaurants/"
 
 // The city can be changed
-let city = ""
+let city = "Helsinki"
 
 // https://stackoverflow.com/questions/35038857/setting-query-string-using-fetch-get-request
 
@@ -15,13 +15,15 @@ function getSearchData() {
 }
 
 function citySelect(city) {
+    
     fetch(api_url + city)
         .then(response => response.json())
         .then(restaurants => showRestaurants(restaurants));
 }
 
 
-// Hangs here now!
+// Might be a problem bc no async?
+// Might help: https://stackoverflow.com/questions/59060113/sending-data-from-a-search-bar-to-a-url
 
 // Loops and returns all the restaurant names in a specific city.
 showRestaurants = restaurantsAPI => {
@@ -30,6 +32,7 @@ showRestaurants = restaurantsAPI => {
     const restaurantsForm = document.getElementById("restaurant-data");
 
     restaurantsAPI.restaurants.forEach(restaurant => {
+        
         const restaurantId = "restaurant" + i;
 
         const restaurantElement = document.createElement("input");
@@ -52,6 +55,8 @@ showRestaurants = restaurantsAPI => {
         
     });
 }
+
+
 // The function way: 
 
 // async function getRes() {
