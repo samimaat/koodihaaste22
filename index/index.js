@@ -1,7 +1,7 @@
 const api_url = "http://localhost:8080/api/v1/restaurants/"
 
 // The city can be changed
-let city = "Helsinki"
+let city = ""
 
 // https://stackoverflow.com/questions/35038857/setting-query-string-using-fetch-get-request
 
@@ -9,52 +9,50 @@ let city = "Helsinki"
 
 // Fetches the restaurant information from the API and continues into a function, which constructs the HTML and displays on the page.
 
-function getSearchData() {
-    let city = document.getElementById("search").value;
-    citySelect(city);
-}
+const btn = document.getElementById("submit");
 
-function citySelect(city) {
-    
+btn.addEventListener("click", fetchAndShowRestaurants);
+
+function fetchAndShowRestaurants() {
+    let city = "Helsinki"
+
     fetch(api_url + city)
         .then(response => response.json())
         .then(restaurants => showRestaurants(restaurants));
-}
 
-
-// Might be a problem bc no async?
 // Might help: https://stackoverflow.com/questions/59060113/sending-data-from-a-search-bar-to-a-url
 
 // Loops and returns all the restaurant names in a specific city.
-showRestaurants = restaurantsAPI => {
-    let i = 0;
-    
-    const restaurantsForm = document.getElementById("restaurant-data");
-
-    restaurantsAPI.restaurants.forEach(restaurant => {
+    showRestaurants = restaurantsAPI => {
+        let i = 0;
         
-        const restaurantId = "restaurant" + i;
+        const restaurantsForm = document.getElementById("restaurant-data");
 
-        const restaurantElement = document.createElement("input");
-        restaurantElement.type = "radio";
-        restaurantElement.name = "restaurant_voting";
-        restaurantElement.id = restaurantId;
-        restaurantElement.value = "restaurant_option";
+        restaurantsAPI.restaurants.forEach(restaurant => {
+            
+            const restaurantId = "restaurant" + i;
 
-        const label = document.createElement("label");
-        label.htmlFor = restaurantId;
+            const restaurantElement = document.createElement("input");
+            restaurantElement.type = "radio";
+            restaurantElement.name = "restaurant_voting";
+            restaurantElement.id = restaurantId;
+            restaurantElement.value = "restaurant_option";
 
-        const description = document.createTextNode("Ravintola: " + restaurant.name);
-        label.append(description);
+            const label = document.createElement("label");
+            label.htmlFor = restaurantId;
 
-        const newline = document.createElement("br");
+            const description = document.createTextNode("Ravintola: " + restaurant.name);
+            label.append(description);
 
-        restaurantsForm.append(restaurantElement, label, newline);
+            const newline = document.createElement("br");
 
-        i++;
-        
+            restaurantsForm.append(restaurantElement, label, newline);
+
+            i++; // Incerement ID number
+            
     });
 }
+};
 
 
 // The function way: 
