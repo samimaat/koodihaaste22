@@ -8,12 +8,13 @@ const api_url = "http://localhost:8080/api/v1/restaurants/"
 
 // Fetches the restaurant information from the API and continues into a function, which constructs the HTML and displays on the page.
 
-function fetchAndShowRestaurants(event) {
-    event.preventDefault();
+function fetchAndShowRestaurants(e) {
+    e.preventDefault();
 
     // This doesn't work! Why can't it not submi?!??!
-    let city = event.target.value;
-    alert(event.target);
+    // MAybe this helps? -> https://www.youtube.com/watch?v=I_fVO_NzT2g
+    let city = e.target.value;
+    alert(e.target);
 
     fetch(api_url + city)
         .then(response => response.json())
