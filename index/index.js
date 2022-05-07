@@ -1,7 +1,6 @@
 const api_url = "http://localhost:8080/api/v1/restaurants/"
 
 // The city can be changed
-let city = ""
 
 // https://stackoverflow.com/questions/35038857/setting-query-string-using-fetch-get-request
 
@@ -9,12 +8,12 @@ let city = ""
 
 // Fetches the restaurant information from the API and continues into a function, which constructs the HTML and displays on the page.
 
-const btn = document.getElementById("submit");
+function fetchAndShowRestaurants(event) {
+    event.preventDefault();
 
-btn.addEventListener("click", fetchAndShowRestaurants);
-
-function fetchAndShowRestaurants() {
-    let city = "Helsinki"
+    // This doesn't work! Why can't it not submi?!??!
+    let city = event.target.value;
+    alert(event.target);
 
     fetch(api_url + city)
         .then(response => response.json())
@@ -54,6 +53,9 @@ function fetchAndShowRestaurants() {
 }
 };
 
+const form = document.getElementById("restaurant-search");
+
+form.addEventListener("submit", fetchAndShowRestaurants);
 
 // The function way: 
 
