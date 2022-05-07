@@ -1,63 +1,66 @@
 // Rick and Morty API
 // https://jack72828383883.medium.com/how-to-use-javascript-fetch-to-display-api-results-in-html-7aa59936ed30
 
+const btn1 = document.getElementById("MSH");
 
+btn1.addEventListener("click", fetchCharacters);
 
-fetch("https://rickandmortyapi.com/api/character/")
-   .then(response => response.json())
-   .then(characters => showCharacters(characters.results));
+function fetchCharacters() {
 
-showCharacters = characters => {
-    let i = 0;
+  fetch("https://rickandmortyapi.com/api/character/")
+    .then(response => response.json())
+    .then(characters => showCharacters(characters.results));
 
-    const charactersForm = document.getElementById("character-data");
-    // console.log(characters);
-    
+  showCharacters = characters => {
 
-    characters.forEach(character => {
-      var characterId = "character" + i;
-
-      var characterElement = document.createElement("input");
-      characterElement.type = "radio";
-      characterElement.name = "fav_character";
-      characterElement.id = characterId;
-      characterElement.value ="character";
-
-      var label = document.createElement("label");
-      label.htmlFor = characterId;
+      const charactersForm = document.getElementById("character-data");
+      console.log(characters);
       
-      var description = document.createTextNode("Character Name: " + character.name);
-      label.appendChild(description);
+      let i = 0;
+      characters.forEach(character => {
+        var characterId = "character" + i;
 
-      var newline = document.createElement("br");
-      
-      charactersForm.append(characterElement);
-      charactersForm.append(label);
-      charactersForm.append(newline);
+        var characterElement = document.createElement("input");
+        characterElement.type = "radio";
+        characterElement.name = "fav_character";
+        characterElement.id = characterId;
+        characterElement.value ="character";
 
-      i++;
+        var label = document.createElement("label");
+        label.htmlFor = characterId;
+        
+        var description = document.createTextNode("Character Name: " + character.name);
+        label.appendChild(description);
+
+        var newline = document.createElement("br");
+        
+        charactersForm.append(characterElement);
+        charactersForm.append(label);
+        charactersForm.append(newline);
+
+        i++;
     });
   }
-
+};
 
 // Generating new radio buttons: https://www.techiedelight.com/create-radio-button-dynamically-javascript/#:~:text=To%20create%20a%20radio%20button,appendChild()%20method.
 // Problem: It lets you select multiple ones and they aren't unique.
-document.getElementById('submit2').onclick = function() {
-    var radiobox = document.createElement('input');
-    radiobox.type = 'radio';
-    radiobox.id = 'contact';
-    radiobox.value = 'email';
+// document.getElementById('submit2').onclick = function() {
+//     var radiobox = document.createElement('input');
+//     radiobox.type = 'radio';
+//     radiobox.id = 'contact';
+//     radiobox.value = 'email';
  
-    var label = document.createElement('label')
-    label.htmlFor = 'contact';
+//     var label = document.createElement('label')
+//     label.htmlFor = 'contact';
  
-    var description = document.createTextNode('Email');
-    label.appendChild(description);
+//     var description = document.createTextNode('Email');
+//     label.appendChild(description);
  
-    var newline = document.createElement('br');
+//     var newline = document.createElement('br');
  
-    var container = document.getElementById('container');
-    container.appendChild(radiobox);
-    container.appendChild(label);
-    container.appendChild(newline);
-}
+//     var container = document.getElementById('container');
+//     container.appendChild(radiobox);
+//     container.appendChild(label);
+//     container.appendChild(newline);
+// }
