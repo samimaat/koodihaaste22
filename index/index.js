@@ -10,11 +10,11 @@ const api_url = "http://localhost:8080/api/v1/restaurants/"
 
 function fetchAndShowRestaurants(e) {
     e.preventDefault();
-
+    console.log("Form!")
     // This doesn't work! Why can't it not submi?!??!
     // MAybe this helps? -> https://www.youtube.com/watch?v=I_fVO_NzT2g
-    let city = e.target.value;
-    alert(e.target);
+    let city = document.getElementById("city").value;
+    console.log(city);
 
     fetch(api_url + city)
         .then(response => response.json())
