@@ -2,8 +2,6 @@
 <html lang="fi">
 
 <head>
-
-
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -14,8 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Safka Skaba - Jokapäiväinen ravintolaäänestyssovellus.</title>
 
+    <!-- Main script -->
     <script src="index.js" defer></script>
-    <script src="test.js" defer></script>
+
+    <!-- Testing script -->
+    <!-- <script src="test.js" defer></script> -->
 </head>
 
 <body>
@@ -32,7 +33,7 @@
         <li>Nautiskele.</li>
     </ol>
 
-    <form id="restaurant-search">
+    <form class="form-check" id="restaurant-search">
         <h2><label for="city">Paikkakunta</label></h2>
         <input type="text" name="search" id="city" placeholder="Paikkakunnan nimi"><br>
         <button name="search_btn">Hae</button>
@@ -41,11 +42,13 @@
     <h2>Listaus kaikista ravintoloista</h2>
     <form id="restaurant-data"></form>
 
-    <h2>Test js</h2>
-    <button id="MSH">Click me!</button>
-    <form id="character-data"></form>
-    <footer>
+    <!-- Testing grounds -->
+    <!-- <h2>Test js</h2> -->
+    <!-- <button id="MSH">Click me!</button> -->
+    <!-- <form id="character-data"></form> -->
 
+    <footer>
+        <p>Kehittäjä: Sami Määttä</p>
     </footer>
 
 </body>
