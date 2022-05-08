@@ -1,5 +1,5 @@
 const api_url = "http://localhost:8080/api/v1/restaurants/"
-const restaurantDataID = "restaurant-data";
+const restaurantDataID = "restaurant-form";
 const form = document.getElementById("restaurant-search");
 
 // The city can be changed
@@ -31,19 +31,23 @@ function showRestaurants(restaurantsAPI) {
 
     restaurantsAPI.restaurants.forEach(restaurant => {
 
+        // generate unique IDs
         const restaurantId = "restaurant" + i;
 
+        // create radio buttons
         const restaurantRadioButton = document.createElement("input");
-        restaurantRadioButton.className = "form-check-input";
         restaurantRadioButton.type = "radio";
+        restaurantRadioButton.className = "form-check-input";
         restaurantRadioButton.name = "restaurant_voting";
         restaurantRadioButton.id = restaurantId;
         restaurantRadioButton.value = "restaurant_option";
 
+        // create label for radio buttons
         const restaurantRadioLabel = document.createElement("label");
         restaurantRadioLabel.className = "form-check-label";
         restaurantRadioLabel.htmlFor = restaurantId;
 
+        // get restaurant name for the label
         const restaurantName = document.createTextNode(restaurant.name);
         restaurantRadioLabel.append(restaurantName);
 
