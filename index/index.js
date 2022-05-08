@@ -27,7 +27,12 @@ function showRestaurants(restaurantsAPI) {
 
     let i = 0;
 
+    const heading = document.createElement("h2");
+    heading.textContent = "Listaus kaikista ravintoloista";
+
     const restaurantsForm = document.getElementById(restaurantDataID);
+
+    restaurantsForm.append(heading);
 
     restaurantsAPI.restaurants.forEach(restaurant => {
 
