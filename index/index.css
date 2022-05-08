@@ -17,3 +17,7 @@ body {
 .sc-only {
     display: none;
 }
+
+.form-control {
+    max-width: fit-content;
+}
