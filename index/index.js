@@ -12,8 +12,15 @@ const form = document.getElementById("restaurant-search");
 
 function fetchRestaurants(city) {
     fetch(api_url + city)
-        .then(response => response.json())
-        .then(restaurants => showRestaurants(restaurants));
+        .then(response => {
+            if (response.ok) {
+                console.log("toimii")
+                return response.json()
+        }   return Promise.reject(response) // Continue: https://dev.to/myogeshchavan97/do-you-know-why-we-check-for-response-ok-while-using-fetch-1mkd
+        }
+        })
+        .then(restaurants => showRestaurants(restaurants))
+        .catch(error => console.log("error is", error))
 };
 
 function clearForm(restaurantDataID) {
