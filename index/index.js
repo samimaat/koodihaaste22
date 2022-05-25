@@ -12,16 +12,25 @@ const form = document.getElementById("restaurant-search");
 
 function fetchRestaurants(city) {
     fetch(api_url + city)
-        .then(response => {
-            if (response.ok) {
-                console.log("toimii")
-                return response.json()
-        }   return Promise.reject(response) // Continue: https://dev.to/myogeshchavan97/do-you-know-why-we-check-for-response-ok-while-using-fetch-1mkd
-        }
+        .then(response => response.json())
+        .then(restaurantsAPI => {
+            if (restaurantsAPI.restaurants.length == 0) {
+                console.log("Ei ole!");
+                searchAgain();
+            }
+            else (showRestaurants(restaurantsAPI));
         })
-        .then(restaurants => showRestaurants(restaurants))
-        .catch(error => console.log("error is", error))
 };
+
+function searchAgain() {
+    clearForm(restaurantDataID);
+
+    const searchAgainMsg = document.createElement("p");
+    searchAgainMsg.textContent = "Ei tuloksia. Kokeile uudelleen."
+
+    const restaurantsForm = document.getElementById(restaurantDataID);
+    restaurantsForm.append(searchAgainMsg);
+}
 
 function clearForm(restaurantDataID) {
     document.getElementById(restaurantDataID).innerHTML = "";
