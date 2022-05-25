@@ -1,5 +1,6 @@
 const api_url = "http://localhost:8080/api/v1/restaurants/"
 const restaurantDataID = "restaurant-form";
+const restaurantSearchResults ="restaurant-search-results";
 const form = document.getElementById("restaurant-search");
 
 // The city can be changed
@@ -15,7 +16,6 @@ function fetchRestaurants(city) {
         .then(response => response.json())
         .then(restaurantsAPI => {
             if (restaurantsAPI.restaurants.length == 0) {
-                console.log("Ei ole!");
                 searchAgain();
             }
             else (showRestaurants(restaurantsAPI));
@@ -32,6 +32,12 @@ function searchAgain() {
     restaurantsForm.append(searchAgainMsg);
 }
 
+// Function to clear search results area (div)
+function clearSearchResults(restaurantSearchResults) {
+    document.getElementById(restaurantSearchResults).innerHTML = "";
+}
+
+// Function to clear search results area
 function clearForm(restaurantDataID) {
     document.getElementById(restaurantDataID).innerHTML = "";
 }
